@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="_Resources\online.html" />
+    <None Remove="_Resources\test.css" />
+    <None Remove="_Resources\test.html" />
+    <None Remove="_Resources\test.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="_Resources\online.html" />
+    <EmbeddedResource Include="_Resources\test.css" />
+    <EmbeddedResource Include="_Resources\test.html" />
+    <EmbeddedResource Include="_Resources\test.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HtmlSingler\HtmlSingler.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace HtmlSingler
 {
-    internal class Singler
+    public class Singler
     {
+        public const string TAGPrefix = "####HS";
         const string cssLinkStart = "<link href=";
         const string jsLinkStart = "<script src=";
         const string jsLinkEnd = "</script>";
@@ -25,7 +26,7 @@ namespace HtmlSingler
             // Remove old include
             _htmlContent = _htmlContent.Remove(startTagIdx, endTagIdx - startTagIdx);
             // Insert new ReplaceTag
-            _htmlContent = _htmlContent.Insert(startTagIdx, $"####HS{_replaceList.Count}####");
+            _htmlContent = _htmlContent.Insert(startTagIdx, $"{TAGPrefix}{_replaceList.Count}####");
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace HtmlSingler
                 string linkElement = _htmlContent.Substring(startIndex, endIndex - startIndex);
                 string fileName = GetAttributeValueFromElement(linkElement, "src");
 
-                SetReplaceEntry(startIndex, endIndex + jsLinkEnd.Length, fileName);
+                SetReplaceEntry(startIndex, endIndex, fileName);
             }
 
             // Replace the marks with the read and 
@@ -146,13 +147,13 @@ namespace HtmlSingler
                 else
                     throw new NotImplementedException($"File extension {Path.GetExtension(linkedFileName)} is not supported");
 
-                _htmlContent = _htmlContent.Replace($"####HS{repIdx + 1}####", linkedFileContent);
+                _htmlContent = _htmlContent.Replace($"{TAGPrefix}{repIdx + 1}####", linkedFileContent);
             }
 
             if (outputFileName != null)
                 File.WriteAllText(outputFileName, _htmlContent);
             else
-                Console.WriteLine(outputFileName);
+                Console.WriteLine(_htmlContent);
         }
     }
 }

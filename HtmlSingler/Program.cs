@@ -13,7 +13,7 @@ namespace HtmlSingler
             if (args.Length == 0)
             {
                 Console.WriteLine();
-                Console.WriteLine("HtmlSingler <input.html> [<output.html>]");
+                Console.WriteLine("Usage: HtmlSingler <input.html> [<output.html>]");
                 Console.WriteLine();
                 Console.WriteLine("Combines a HTML file with all direct includes (js/css) to a minified single HTML file.");
                 Console.WriteLine("Javascript links must be in format '<script src=[NAME]></script>'.");
