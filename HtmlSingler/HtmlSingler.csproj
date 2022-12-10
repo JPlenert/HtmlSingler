@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Title>HtmlSingler</Title>
+    <Authors>Joerg Plenert</Authors>
+    <Company>Joerg Plenert, D-Voerde</Company>
+    <Copyright>(c) 2022 by Joerg Plenert</Copyright>
+    <AssemblyVersion>0.5</AssemblyVersion>
+    <FileVersion>0.5</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUglify" Version="1.20.3" />
+  </ItemGroup>
+
+</Project>
