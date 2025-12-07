@@ -1,6 +1,7 @@
-﻿// HtmlSingler, (c)2022 by Joerg Plenert, D-Voerde
+﻿// HtmlSingler, (c)2022-25 by Joerg Plenert, D-Voerde
 // Licensed under GPL v3
 using System;
+using System.Collections.Generic;
 
 namespace HtmlSingler
 {
@@ -8,17 +9,19 @@ namespace HtmlSingler
     {
         static int Main(string[] args)
         {
-            Console.WriteLine("HtmlSingler V0.5, (c)2022 by Joerg Plenert, D-Voerde");
+            Console.WriteLine("HtmlSingler V0.6, (c)2022-2025 by Joerg Plenert, D-Voerde");
 
             if (args.Length == 0)
             {
                 Console.WriteLine();
-                Console.WriteLine("Usage: HtmlSingler <input.html> [<output.html>]");
+                Console.WriteLine("Usage: HtmlSingler <input.html> [<output.html>] [<List of files to not uglify>]");
                 Console.WriteLine();
                 Console.WriteLine("Combines a HTML file with all direct includes (js/css) to a minified single HTML file.");
                 Console.WriteLine("Javascript links must be in format '<script src=[NAME]></script>'.");
                 Console.WriteLine("CSS links must be in format '<link href=[NAME] xxxxxx>'.");
                 Console.WriteLine("Uses NUglify for minify and compression.");
+                Console.WriteLine("");
+                Console.WriteLine("if NoUglify-List is 'all' no file fill be uglified");
                 return -1;
             }
 
@@ -26,7 +29,25 @@ namespace HtmlSingler
 
             try
             {
-                singler.Execute(args[0], args.Length >= 2 ? args[1] : null);
+                List<string> noUglifxList = null;
+                bool noUglify = false;
+
+                if (args.Length > 2)
+                {
+                    if (args[2] == "all")
+                    {
+                        noUglify = true;
+                    }
+                    else
+                    {
+                        noUglifxList = new List<string>();
+                        for (int i = 2; i < args.Length; i++)
+                            noUglifxList.Add(args[i]);
+                    }
+                }
+
+
+                singler.Execute(args[0], args.Length >= 2 ? args[1] : null, noUglify, noUglifxList);
             }
             catch (Exception ex)
             {

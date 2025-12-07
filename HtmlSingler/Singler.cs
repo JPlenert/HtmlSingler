@@ -1,4 +1,4 @@
-﻿// HtmlSingler, (c)2022 by Joerg Plenert, D-Voerde
+﻿// HtmlSingler, (c)2022-25 by Joerg Plenert, D-Voerde
 // Licensed under GPL v3
 using NUglify;
 using System;
@@ -90,7 +90,7 @@ namespace HtmlSingler
             }
         }
 
-        public void Execute(string inputFileName, string outputFileName)
+        public void Execute(string inputFileName, string outputFileName, bool noUglify = false, IList<string> uglifySkipFiles = null)
         {
             string inputFilePath = Path.GetDirectoryName(inputFileName);
             string htmlContent = File.ReadAllText(inputFileName);
@@ -141,9 +141,19 @@ namespace HtmlSingler
                 string linkedFileContent = GetFileContent(linkedFileName, inputFilePath);
 
                 if (Path.GetExtension(linkedFileName) == ".css")
-                    linkedFileContent = "<style>" + Uglify.Css(linkedFileContent).Code + "</style>";
+                {
+                    if (noUglify || (uglifySkipFiles?.Contains(Path.GetFileName(linkedFileName)) ?? false))
+                        linkedFileContent = "<style>" + linkedFileContent + "</style>";
+                    else
+                        linkedFileContent = "<style>" + Uglify.Css(linkedFileContent).Code + "</style>";
+                }
                 else if (Path.GetExtension(linkedFileName) == ".js")
-                    linkedFileContent = "<script>" + Uglify.Js(linkedFileContent).Code + "</script>";
+                {
+                    if (noUglify || (uglifySkipFiles?.Contains(Path.GetFileName(linkedFileName)) ?? false))
+                        linkedFileContent = "<script>" + linkedFileContent + "</script>";
+                    else
+                        linkedFileContent = "<script>" + Uglify.Js(linkedFileContent).Code + "</script>";
+                }
                 else
                     throw new NotImplementedException($"File extension {Path.GetExtension(linkedFileName)} is not supported");
 

@@ -17,6 +17,10 @@ The new **single** html file is written to a new file out STDOUT.
 `$> HtmlSingler ./index.html ./index.single.html`
 or 
 `$> HtmlSingler ./index.html`
+or
+`$> HtmlSingler ./index.html ./index.single.html nominify.js`
+or
+`$> HtmlSingler ./index.html ./index.single.html all`
 
 or if using universal version
 
@@ -26,3 +30,13 @@ or if using universal version
 
 (c) 2022 by Joerg Plenert, D-Voerde.
 Under GPLv3 license.
+
+## Release notes
+
+### V0.6
+Updated to DotNet 8
+Updated NUglify vrom 1.20.3 to 1.21.17
+Added 'all' to NoUglify-List
+
+### V0.5
+Initial version

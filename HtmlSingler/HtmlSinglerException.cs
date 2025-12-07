@@ -1,4 +1,4 @@
-﻿// HtmlSingler, (c)2022 by Joerg Plenert, D-Voerde
+﻿// HtmlSingler, (c)2022-25 by Joerg Plenert, D-Voerde
 // Licensed under GPL v3
 using System;
 
