@@ -5,7 +5,7 @@ dotnet build ./HtmlSingler -c Release -p:MyRuntimeIdentifier=linux-x64 -p:Publis
 dotnet build ./HtmlSingler -c Release -p:MyRuntimeIdentifier=linux-arm64 -p:PublishSingleFile=true --self-contained true
 
 New-Item -Path './HtmlSingler/bin/Release/net8.0/universal' -ItemType Directory
-Move-Item -Path './HtmlSingler/bin/Release/net8.0/*.*' -Destination './HtmlSingler/bin/Release/net6.0/universal'
+Move-Item -Path './HtmlSingler/bin/Release/net8.0/*.*' -Destination './HtmlSingler/bin/Release/net8.0/universal'
 
 Remove-Item './HtmlSingler/bin/Release/net8.0/linux-arm64/*.*'
 Remove-Item './HtmlSingler/bin/Release/net8.0/linux-arm64/createdump'
